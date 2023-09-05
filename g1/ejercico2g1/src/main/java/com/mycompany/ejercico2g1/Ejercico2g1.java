@@ -12,5 +12,6 @@ public class Ejercico2g1 {
 
     public static void main(String[] args) {
         screen pantalla = new screen();
+        pantalla.setVisible(true);
     }
 }
