@@ -63,6 +63,9 @@ public class ServletPrincipal extends HttpServlet {
         if (accion == null) {
             request.getRequestDispatcher("/Login.html").forward(request, response);
         }
+        else if (accion.equals("index")) {
+            request.getRequestDispatcher("/index.html").forward(request, response);
+        }
         else if (accion.equals("Login")) {
             request.getRequestDispatcher("/Login.html").forward(request, response);
         }
