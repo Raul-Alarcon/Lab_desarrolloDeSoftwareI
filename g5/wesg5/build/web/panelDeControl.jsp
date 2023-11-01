@@ -12,7 +12,6 @@
         <title>Panel Administrador</title>
     </head>
     <body>
-        <div><h1>Bienvenido al Sistema de gestion de la Tienda de Electronica 1.0</h1></div>
         <%-- directiva page--%>
         <% String usuario = request.getParameter("tfUser"); %>
         <div><h2><strong>Bienvenido, <%= usuario %></strong></h2></div>
