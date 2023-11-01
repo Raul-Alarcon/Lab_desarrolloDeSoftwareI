@@ -63,25 +63,28 @@ public class ServletPrincipal extends HttpServlet {
         if (accion == null) {
             request.getRequestDispatcher("/Login.html").forward(request, response);
         }
-        else if (accion.equals("Login.html")) {
+        else if (accion.equals("index")) {
+            request.getRequestDispatcher("/index.html").forward(request, response);
+        }
+        else if (accion.equals("Login")) {
             request.getRequestDispatcher("/Login.html").forward(request, response);
         }
-        else if (accion.equals("RegistroClientes.html")) {
+        else if (accion.equals("RegistroClientes")) {
             request.getRequestDispatcher("/RegistroClientes.html").forward(request, response);
         }
-        else if (accion.equals("RegistroEmpleados.html")) {
+        else if (accion.equals("RegistroEmpleados")) {
             request.getRequestDispatcher("/RegistroEmpleados.html").forward(request, response);
         }
-        else if (accion.equals("RegistroProveedores.html")) {
+        else if (accion.equals("RegistroProveedores")) {
             request.getRequestDispatcher("/RegistroProveedores.html").forward(request, response);
         }
-        else if (accion.equals("RegistroProductos.html")) {
+        else if (accion.equals("RegistroProductos")) {
             request.getRequestDispatcher("/RegistroProductos.html").forward(request, response);
         }
-        else if (accion.equals("RegistroPedidos.html")) {
+        else if (accion.equals("RegistroPedidos")) {
             request.getRequestDispatcher("/RegistroPedidos.html").forward(request, response);
         }
-        else if (accion.equals("RegistroCompras.html")) {
+        else if (accion.equals("RegistroCompras")) {
             request.getRequestDispatcher("/RegistroCompras.html").forward(request, response);
         }
     }
@@ -97,7 +100,28 @@ public class ServletPrincipal extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        String accion = request.getParameter("accion");
+        
+        if (accion.equals("Login")) {
+            String user = request.getParameter("tfUser");
+            String pass = request.getParameter("tfPass");
+            
+            try(PrintWriter print = response.getWriter()){
+                if (user.equals("admin") && pass.equals("root")) {
+                    request.getRequestDispatcher("/index.html").forward(request, response);
+                }else{
+                    print.println("<!DOCTYPE html>");
+                    print.println("<html>");
+                    print.println("<head>");
+                    print.println("<title>Logi WES</title>");
+                    print.println("</head>");
+                    print.println("<body>");
+                    print.println("<h1>ERROR: USUARIO O CONTRASEÑA INCORRECTOS...</h1>");
+                    print.println("</body>");
+                    print.println("</html>");
+                }
+            }
+        }
     }
 
     /**
