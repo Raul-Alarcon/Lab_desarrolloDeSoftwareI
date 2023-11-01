@@ -55,9 +55,10 @@ public class ServletError extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        Integer codigoEstado = (Integer)request.getAttribute("jakarta.servlet.status_code");
-        String mombreServlet = (String)request.getAttribute("jakarta.error.servlet_name");
-        String peticionUrl = (String)request.getAttribute("jakarta.error.request_url");
+        
+        Integer codigoEstado = (Integer)request.getAttribute("jakarta.servlet.error.status_code");
+        String mombreServlet = (String)request.getAttribute("jakarta.error.error.servlet_name");
+        String peticionUrl = (String)request.getAttribute("jakarta.error.error.request_url");
         
         switch (codigoEstado) {
             case 404:
