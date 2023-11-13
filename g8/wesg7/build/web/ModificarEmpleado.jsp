@@ -38,7 +38,7 @@
                 <input type="submit" value="Modificar" onclick="return confirm('¿Desea modificar el empleado?')" /><br><br> 
             </div>
             <div>
-                <a href="/wesg7/?accion=GestionarEmpleados">Regresar</a><br><br>
+                <a href="/wesg7/?accion=GestionEmpleados">Regresar</a><br><br>
             </div>             
         </form>
     </body>
