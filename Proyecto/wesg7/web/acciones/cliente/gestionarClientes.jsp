@@ -20,7 +20,7 @@
         <h1>Conexion: ${mensaje_conexion}</h1>
         
         <!-- AÑADIR OPCION DE NUEVO REGISTRO -->
-        <a href="/wesg7?accion=AgregarEmpleado">Agregar Cliente</a><br><br>
+        <a href="/wesg7?accion=AgregarCliente">Agregar Cliente</a><br><br>
 
         <table border="1">
             <thead>
@@ -48,6 +48,7 @@
                         <td><c:out value="${item.apellidosCliente}" /></td>
                         <td><c:out value="${item.telefono}" /></td>
                         <td><c:out value="${item.eMail}" /></td>                        
+                        <td><c:out value="${item.idDireccion}" /></td>                        
                         <td><c:out value="${item.distrito}" /></td>
                         <td><c:out value="${item.municipio}" /></td>
                         <td><c:out value="${item.depto}" /></td>
@@ -56,13 +57,14 @@
                         <td><c:out value="${item.codPostal}" /></td>
                         <!-- opcion de modificar y eliminar -->
                         <td>
-                            <form method="POST" action = "/wesg7/acciones/empleado/ModificarEmpleado.jsp">
-                                <input type="hidden" name="ID_Empleado" value="${item.idCliente}" />
+                            <form method="POST" action = "/wesg7/acciones/empleado/ModificarCliente.jsp">
+                                <input type="hidden" name="ID_Cliente" value="${item.idCliente}" />
                                 <input type="hidden" name="dui" value="${item.dui}" />
                                 <input type="hidden" name="nombresCliente" value="${item.nombresCliente}" />
                                 <input type="hidden" name="apellidosCliente" value="${item.apellidosCliente}" />
                                 <input type="hidden" name="telefono" value="${item.telefono}" />
                                 <input type="hidden" name="eMail" value="${item.eMail}" />
+                                <input type="hidden" name="idDireccion" value="${item.idDireccion}" />
                                 <input type="hidden" name="distrito" value="${item.distrito}" />
                                 <input type="hidden" name="municipio" value="${item.municipio}" />
                                 <input type="hidden" name="depto" value="${item.depto}" />
@@ -71,13 +73,14 @@
                                 <input type="hidden" name="codPostal" value="${item.codPostal}" />
                                 <input type="submit" value="Modificar" />
                             </form>    
-                            <form method="POST" action = "/wesg7/acciones/empleado/eliminarEmpleados.jsp">
-                                <input type="hidden" name="ID_Empleado" value="${item.idCliente}" />
+                            <form method="POST" action = "/wesg7/acciones/empleado/eliminarCliente.jsp">
+                                <input type="hidden" name="ID_Cliente" value="${item.idCliente}" />
                                 <input type="hidden" name="dui" value="${item.dui}" />
                                 <input type="hidden" name="nombresCliente" value="${item.nombresCliente}" />
                                 <input type="hidden" name="apellidosCliente" value="${item.apellidosCliente}" />
                                 <input type="hidden" name="telefono" value="${item.telefono}" />
                                 <input type="hidden" name="eMail" value="${item.eMail}" />
+                                <input type="hidden" name="idDireccion" value="${item.idDireccion}" />
                                 <input type="hidden" name="distrito" value="${item.distrito}" />
                                 <input type="hidden" name="municipio" value="${item.municipio}" />
                                 <input type="hidden" name="depto" value="${item.depto}" />

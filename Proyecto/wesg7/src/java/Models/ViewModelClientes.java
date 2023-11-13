@@ -8,6 +8,7 @@ public class ViewModelClientes {
     private String dui;
     private String telefono;
     private String eMail;
+    private int idDireccion;
     private String distrito;
     private String municipio;
     private String depto;
@@ -63,6 +64,14 @@ public class ViewModelClientes {
         this.eMail = eMail;
     }
 
+    public int getIdDireccion() {
+        return idDireccion;
+    }
+
+    public void setIdDireccion(int idDireccion) {
+        this.idDireccion = idDireccion;
+    }
+
     public String getDistrito() {
         return distrito;
     }
@@ -110,4 +119,5 @@ public class ViewModelClientes {
     public void setCodPostal(int codPostal) {
         this.codPostal = codPostal;
     }
+
 }

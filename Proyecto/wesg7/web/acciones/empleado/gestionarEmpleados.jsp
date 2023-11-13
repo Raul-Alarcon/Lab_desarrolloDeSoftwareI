@@ -14,10 +14,14 @@
         <title>Gestionar Empleados</title>
     </head>
     <body>
+        <h1>Menu</h1>
+        <div>
+            <%@include file = "/menus/menuAdministrador.jsp" %>
+        </div>
         <h1>Gestión de Empleados</h1>
         <h2>Listado de Empleados</h2>
 
-        <h1>Conexion: ${mensaje_conexion}</h1>
+        <h2>Conexion: ${mensaje_conexion}</h2>
         
         <!-- AÑADIR OPCION DE NUEVO REGISTRO -->
         <a href="/wesg7?accion=AgregarEmpleado">Agregar empleado</a><br><br>
@@ -83,5 +87,8 @@
                 </c:forEach>
             </tbody>            
         </table>
+        <div>
+            <%@include file = "/footer.html" %>
+        </div>
     </body>
 </html>

@@ -205,7 +205,6 @@ public class ServletPrincipal extends HttpServlet {
             ex.printStackTrace();
         }
     }
-    
     // clientes metodos
     public void mostrarClientes(HttpServletRequest request, HttpServletResponse response) {
         try {
@@ -219,20 +218,23 @@ public class ServletPrincipal extends HttpServlet {
                 ResultSet rs = pstmt.executeQuery();
                 ArrayList<ViewModelClientes> listaClientes = new ArrayList<>();
                 while (rs.next()) {
-                    ViewModelClientes cliente = new viewModelEmpleados();
-                    cliente.setIdCliente(rs.getInt("idEmpleado"));
+                    ViewModelClientes cliente = new ViewModelClientes();
+                    cliente.setIdCliente(rs.getInt("idCliente"));
                     cliente.setDui(rs.getString("dui"));
-                    cliente.setNombresCliente(rs.getString("iSSS"));
-                    cliente.setApellidosCliente(rs.getString("nombresEmpleado"));
-                    cliente.setTelefono(rs.getString("apellidosEmpleado"));
-                    cliente.setFechaNacimiento(rs.getDate("fechaNacimiento"));
+                    cliente.setNombresCliente(rs.getString("nombresCliente"));
+                    cliente.setApellidosCliente(rs.getString("apellidosCliente"));
                     cliente.setTelefono(rs.getString("telefono"));
                     cliente.seteMail(rs.getString("eMail"));
-                    cliente.setIdCargo(rs.getInt("idCargo"));
                     cliente.setIdDireccion(rs.getInt("idDireccion"));
+                    cliente.setDistrito(rs.getString("distrito"));
+                    cliente.setMunicipio(rs.getString("municipio"));
+                    cliente.setDepto(rs.getString("depto"));
+                    cliente.setDireccion(rs.getString("direccion"));
+                    cliente.setReferencia(rs.getString("referencia"));
+                    cliente.setCodPostal(rs.getInt("CodPostal"));
                     listaClientes.add(cliente);
                 }               
-                request.setAttribute("listaEmpleados", listaEmpleados);
+                request.setAttribute("listaClientes", listaClientes);
 
             }
         } catch (SQLException | ClassNotFoundException ex) {
@@ -240,36 +242,35 @@ public class ServletPrincipal extends HttpServlet {
             ex.printStackTrace();
         }
     }
-    
-    public void agregarEmpleado(HttpServletRequest request, HttpServletResponse response) {
+    public void agregarCliente(HttpServletRequest request, HttpServletResponse response) {
        //CAPTURA DE VARIABLES
-        //El ID de los empleados es autoincrementable
-        String DUI_Empleado = request.getParameter("dui");
-        String ISSS_Empleado = request.getParameter("isss");
-        String nombresEmpleado = request.getParameter("nombresEmpleado");
-        String apellidosEmpleado = request.getParameter("apellidosEmpleado");
-        String fechaNacEmpleado = request.getParameter("fechaNacimiento");
-        String telefonoEmpleado = request.getParameter("telefono");
+       //El ID de los clientes es autoincrementable
+        String DUI_Cliente = request.getParameter("dui");
+        String nombresCliente = request.getParameter("nombresCliente");
+        String apellidosCliente = request.getParameter("apellidosCliente");
+        String telefonoCliente = request.getParameter("telefono");
         String correo = request.getParameter("eMail");
-        String ID_Cargo = request.getParameter("idCargo");
-        String ID_Direccion = request.getParameter("idDireccion");
+        String iddireccion = request.getParameter("idDireccion");
+        /*String distrito = request.getParameter("distrito");
+        String municipio = request.getParameter("municipio");
+        String depto = request.getParameter("depto");
+        String direccion = request.getParameter("direccion");
+        String referencia = request.getParameter("referencia");
+        String codPostal = request.getParameter("codPostal");*/
 
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             try (Connection conn = DriverManager.getConnection(url)) {
                 request.setAttribute("mensaje_conexion", "Ok!");
-                String sql = "insert into Empleados values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-                //Nombres, Apellidos, FechaNac, DUI_Empleado, ISSS, Telefono, Correo, ID_Cargo, ID_Direccion
+                String sql = "insert into Cliente values (?, ?, ?, ?, ?, ?)";
+                //nombresCliente, apellidosCliente, dui, telefono, eMail, idDireccion
                 PreparedStatement pstmt = conn.prepareStatement(sql);
-                pstmt.setString(1, nombresEmpleado);
-                pstmt.setString(2, apellidosEmpleado);
-                pstmt.setString(3, fechaNacEmpleado);
-                pstmt.setString(4, DUI_Empleado);
-                pstmt.setString(5, ISSS_Empleado);
-                pstmt.setString(6, telefonoEmpleado );
-                pstmt.setString(7, correo);
-                pstmt.setString(8, ID_Cargo);
-                pstmt.setString(9, ID_Direccion);
+                pstmt.setString(1, nombresCliente);
+                pstmt.setString(2, apellidosCliente);
+                pstmt.setString(3, DUI_Cliente);
+                pstmt.setString(4, telefonoCliente);
+                pstmt.setString(5, correo);
+                pstmt.setString(6, iddireccion );
                 int registros = pstmt.executeUpdate();
                 if (registros > 0) {
                     request.getSession().setAttribute("exito", true);
@@ -284,34 +285,34 @@ public class ServletPrincipal extends HttpServlet {
     }
     
     //Funciones de actualizacion de registros (UPDATE)
-    public void modificarEmpleado(HttpServletRequest request, HttpServletResponse response) {
-        //CAPTURA DE VARIABLES
-        String ID_Empleado = request.getParameter("ID_Empleado");
-        String DUI_Empleado = request.getParameter("DUI_Empleado");
-        String ISSS_Empleado = request.getParameter("ISSS_Empleado");
-        String nombresEmpleado = request.getParameter("nombresEmpleado");
-        String apellidosEmpleado = request.getParameter("apellidosEmpleado");
-        String fechaNacEmpleado = request.getParameter("fechaNacEmpleado");
-        String telefonoEmpleado = request.getParameter("telefonoEmpleado");
-        String correo = request.getParameter("correo");
-        String ID_Cargo = request.getParameter("ID_Cargo");
-        String ID_Direccion = request.getParameter("ID_Direccion");
+    public void modificarCliente(HttpServletRequest request, HttpServletResponse response) {
+        ///CAPTURA DE VARIABLES
+        String DUI_Cliente = request.getParameter("dui");
+        String nombresCliente = request.getParameter("nombresCliente");
+        String apellidosCliente = request.getParameter("apellidosCliente");
+        String telefonoCliente = request.getParameter("telefono");
+        String correo = request.getParameter("eMail");
+        String iddireccion = request.getParameter("idDireccion");
+        /*String distrito = request.getParameter("distrito");
+        String municipio = request.getParameter("municipio");
+        String depto = request.getParameter("depto");
+        String direccion = request.getParameter("direccion");
+        String referencia = request.getParameter("referencia");
+        String codPostal = request.getParameter("codPostal");*/
 
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             try (Connection conn = DriverManager.getConnection(url)) {
                 request.setAttribute("mensaje_conexion", "Ok!");
-                String sql = "update Empleados set "
-                 + "dui='"+DUI_Empleado+"', "
-                 + "ISSS='"+ISSS_Empleado+"', "
-                 + "nombresEmpleado='"+nombresEmpleado+"', "
-                 + "apellidosEmpleado='"+apellidosEmpleado+"', "
-                 + "fechaNacimiento='"+fechaNacEmpleado+"', "
-                 + "telefono='"+telefonoEmpleado+"', "
-                 + "eMail='"+correo+"', " 
-                 + "idCargo='"+ID_Cargo+"', "
-                 + "idDireccion='"+ID_Direccion+"' " 
-                 + "where idEmpleado='"+ID_Empleado+"'";
+                String sql = "UPDATE Clientes\n" +
+                        "SET" +
+                        "nombreCliente = '"+nombresCliente+"'," +
+                        "apellidoCliente = '"+apellidosCliente+"'," +
+                        "dui = '"+DUI_Cliente+"'," +
+                        "telefono = '"+telefonoCliente+"'," +
+                        "eMail = '"+correo+"'," +
+                        "idDireccion = '"+iddireccion+"'" +
+                        "WHERE IDCliente = ;";
                 
                 PreparedStatement pstmt = conn.prepareStatement(sql);
                 int registros = pstmt.executeUpdate();
@@ -326,15 +327,14 @@ public class ServletPrincipal extends HttpServlet {
             ex.printStackTrace();
         }
     }
-    
     //Funciones de eliminacion de registros (DELETE)
-    public void eliminarEmpleado(HttpServletRequest request, HttpServletResponse response) {
-        String ID_Empleado = request.getParameter("ID_Empleado");
+    public void eliminarCliente(HttpServletRequest request, HttpServletResponse response) {
+        String ID_Cliente = request.getParameter("ID_Cliente");
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             try (Connection conn = DriverManager.getConnection(url)) {
                 request.setAttribute("mensaje_conexion", "Ok!");
-                String sql = "delete from Empleados where idEmpleado='" + ID_Empleado + "'";
+                String sql = "delete from Clientes where IDCliente='" + ID_Cliente + "'";
                 PreparedStatement pstmt = conn.prepareStatement(sql);
                 int registros = pstmt.executeUpdate();
                 if (registros > 0) {
@@ -370,25 +370,6 @@ public class ServletPrincipal extends HttpServlet {
         else if (accion.equals("Login")) {
             request.getRequestDispatcher("/Login.jsp").forward(request, response);
         }
-        /*
-        else if (accion.equals("RegistroClientes")) {
-            request.getRequestDispatcher("/RegistroClientes.html").forward(request, response);
-        }
-        else if (accion.equals("RegistroEmpleados")) {
-            request.getRequestDispatcher("/RegistroEmpleados.html").forward(request, response);
-        }
-        else if (accion.equals("RegistroProveedores")) {
-            request.getRequestDispatcher("/RegistroProveedores.html").forward(request, response);
-        }
-        else if (accion.equals("RegistroProductos")) {
-            request.getRequestDispatcher("/RegistroProductos.html").forward(request, response);
-        }
-        else if (accion.equals("RegistroPedidos")) {
-            request.getRequestDispatcher("/RegistroPedidos.html").forward(request, response);
-        }
-        else if (accion.equals("RegistroCompras")) {
-            request.getRequestDispatcher("/RegistroCompras.html").forward(request, response);
-        }*/
         else if (accion.equals("GestionEmpleados")) {
             mostrarEmpleados(request, response);
             request.getRequestDispatcher("/acciones/empleado/gestionarEmpleados.jsp").forward(request, response);
@@ -399,6 +380,17 @@ public class ServletPrincipal extends HttpServlet {
                 request.getSession().removeAttribute("exito");
             }
             request.getRequestDispatcher("/acciones/empleado/agregarEmpleado.jsp").forward(request, response);
+        }
+        else if (accion.equals("GestionClientes")) {
+            mostrarEmpleados(request, response);
+            request.getRequestDispatcher("/acciones/cliente/gestionarClientes.jsp").forward(request, response);
+        }
+        else if (accion.equals("AgregarCliente")) {
+            if (request.getSession().getAttribute("exito") != null) {
+                request.setAttribute("exito", request.getSession().getAttribute("exito"));
+                request.getSession().removeAttribute("exito");
+            }
+            request.getRequestDispatcher("/acciones/cliente/agregarCliente.jsp").forward(request, response);
         }
     }
 
@@ -448,6 +440,19 @@ public class ServletPrincipal extends HttpServlet {
         } else if (accion.equals("EliminarEmpleado")) {
             eliminarEmpleado(request, response);
             response.sendRedirect(request.getContextPath() + "/ServletPrincipal?accion=GestionEmpleados");
+        }
+        // clientes
+        else if (accion.equals("AgregarCliente")) {
+            //LOS DATOS SE LE PASAN POR PARAMETRO A LA FUNCION
+            agregarCliente(request, response);
+            //REDIRIGE NUEVAMENTE A LA VISTA DE AGREGAR EMPLEADO
+            response.sendRedirect(request.getContextPath() + "/ServletPrincipal?accion=AgregarCliente");
+        } else if (accion.equals("ModificarCliente")) {
+            modificarCliente(request, response);
+            response.sendRedirect(request.getContextPath() + "/ServletPrincipal?accion=GestionClientes");
+        } else if (accion.equals("EliminarCliente")) {
+            eliminarCliente(request, response);
+            response.sendRedirect(request.getContextPath() + "/ServletPrincipal?accion=GestionClientes");
         }
     }
 

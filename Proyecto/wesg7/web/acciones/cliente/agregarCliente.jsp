@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Agregar Empleado</title>
+        <title>Agregar Cliente</title>
     </head>
     <body>
         <c:if test="${exito!=null}">
@@ -20,26 +20,20 @@
                 <p><strong style="color: red;">No se guardó la información</strong></p>
             </c:if>
         </c:if>   
-        <h1>Agregar nuevo empleado</h1>
+        <h1>Agregar nuevo Cliente</h1>
         
-        <form method="POST" action="/wesg7/ServletPrincipal?accion=AgregarEmpleado">
+        <form method="POST" action="/wesg7/ServletPrincipal?accion=AgregarCliente">
             <div>
               <label>DUI:</label>
               <input type="text" name="dui" id="dui" required /><br>
-              <label>Número de afiliado ISSS:</label>
-              <input type="text" name="isss" id="isss" required /><br>
               <label>Nombres:</label>
-              <input type="text" name="nombresEmpleado" id="nombresEmpleado" required /><br>
+              <input type="text" name="nombresCliente" id="nombresCliente" required /><br>
               <label>Apellidos:</label>
-              <input type="text" name="apellidosEmpleado" id="apellidosEmpleado" required /><br>
-              <label>Fecha de nacimiento:</label>
-              <input type="date" name="fechaNacimiento" id="fechaNacimiento" required /><br>
+              <input type="text" name="apellidosCliente" id="apellidosCliente" required /><br>
               <label>Teléfono:</label>
               <input type="tel" name="telefono" id="telefono" required /><br>
               <label>Correo:</label>
               <input type="email" name="eMail" id="eMail" required /><br>
-              <label>ID Cargo:</label>
-              <input type="text" name="idCargo" id="idCargo" required /><br>
               <label>ID Dirección:</label>
               <input type="text" name="idDireccion" id="idDireccion" required /><br><br>
               <input type="submit" value="Registrar" onclick="return confirm('¿Desea registrar el empleado?')" /><br><br>
