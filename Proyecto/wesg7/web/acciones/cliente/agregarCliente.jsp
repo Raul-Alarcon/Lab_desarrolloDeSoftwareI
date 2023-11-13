@@ -36,7 +36,7 @@
               <input type="email" name="eMail" id="eMail" required /><br>
               <label>ID Dirección:</label>
               <input type="text" name="idDireccion" id="idDireccion" required /><br><br>
-              <input type="submit" value="Registrar" onclick="return confirm('¿Desea registrar el empleado?')" /><br><br>
+              <input type="submit" value="Registrar" onclick="return confirm('¿Desea registrar el cliente?')" /><br><br>
             </div><br>
             <div>
               <a href="/">Volver al inicio</a>

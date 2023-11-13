@@ -213,7 +213,7 @@ public class ServletPrincipal extends HttpServlet {
             try(Connection conn = DriverManager.getConnection(url)){
             //try (Connection conn = DriverManager.getConnection(url);) {
                 request.setAttribute("mensaje_conexion", "Ok!");
-                String sqlQuery = "select * from vistaCliente;";
+                String sqlQuery = "select * from vistaCliente";
                 PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
                 ResultSet rs = pstmt.executeQuery();
                 ArrayList<ViewModelClientes> listaClientes = new ArrayList<>();
@@ -228,10 +228,10 @@ public class ServletPrincipal extends HttpServlet {
                     cliente.setIdDireccion(rs.getInt("idDireccion"));
                     cliente.setDistrito(rs.getString("distrito"));
                     cliente.setMunicipio(rs.getString("municipio"));
-                    cliente.setDepto(rs.getString("depto"));
-                    cliente.setDireccion(rs.getString("direccion"));
-                    cliente.setReferencia(rs.getString("referencia"));
-                    cliente.setCodPostal(rs.getInt("CodPostal"));
+                    cliente.setDepto(rs.getString("departamento"));
+                    cliente.setDireccion(rs.getString("Linea1"));
+                    cliente.setReferencia(rs.getString("Linea2"));
+                    cliente.setCodPostal(rs.getInt("CodigoPostal"));
                     listaClientes.add(cliente);
                 }               
                 request.setAttribute("listaClientes", listaClientes);
@@ -382,7 +382,7 @@ public class ServletPrincipal extends HttpServlet {
             request.getRequestDispatcher("/acciones/empleado/agregarEmpleado.jsp").forward(request, response);
         }
         else if (accion.equals("GestionClientes")) {
-            mostrarEmpleados(request, response);
+            mostrarClientes(request, response);
             request.getRequestDispatcher("/acciones/cliente/gestionarClientes.jsp").forward(request, response);
         }
         else if (accion.equals("AgregarCliente")) {
@@ -440,9 +440,7 @@ public class ServletPrincipal extends HttpServlet {
         } else if (accion.equals("EliminarEmpleado")) {
             eliminarEmpleado(request, response);
             response.sendRedirect(request.getContextPath() + "/ServletPrincipal?accion=GestionEmpleados");
-        }
-        // clientes
-        else if (accion.equals("AgregarCliente")) {
+        } else if (accion.equals("AgregarCliente")) {
             //LOS DATOS SE LE PASAN POR PARAMETRO A LA FUNCION
             agregarCliente(request, response);
             //REDIRIGE NUEVAMENTE A LA VISTA DE AGREGAR EMPLEADO

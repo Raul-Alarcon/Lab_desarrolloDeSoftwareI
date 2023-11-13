@@ -30,13 +30,15 @@
                     <th>nombresCliente</th>
                     <th>apellidosCliente</th>
                     <th>telefono</th>
-                    <th>eMail</th>
+                    <th>Correo</th>
+                    <th>idDireccion</th>
                     <th>Distrito</th>
                     <th>Municipio</th>
                     <th>Departamento</th>
                     <th>Direccion</th>
                     <th>Referencia</th>
                     <th>CodigoPostal</th>
+                    <th>Opciones</th>
                 </tr>
             </thead>
             <tbody>
