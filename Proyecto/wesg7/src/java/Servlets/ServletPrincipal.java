@@ -262,7 +262,7 @@ public class ServletPrincipal extends HttpServlet {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             try (Connection conn = DriverManager.getConnection(url)) {
                 request.setAttribute("mensaje_conexion", "Ok!");
-                String sql = "insert into Cliente values (?, ?, ?, ?, ?, ?)";
+                String sql = "insert into Clientes values (?, ?, ?, ?, ?, ?)";
                 //nombresCliente, apellidosCliente, dui, telefono, eMail, idDireccion
                 PreparedStatement pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1, nombresCliente);
