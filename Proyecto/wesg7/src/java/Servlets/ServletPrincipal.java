@@ -27,7 +27,7 @@ import java.util.ArrayList;
 @WebServlet (name = "ServletPrincipal", urlPatterns = {"/ServletPrincipal"})
 public class ServletPrincipal extends HttpServlet {
     private final String user = "login_gg_diegogonzales";
-    private final String pass = "Gonzalesz1234";
+    private final String pass = "Gonzales1234";
     private final String servidor = "localhost:1433";
     private final String bd = "tiendaElectronica";
 
@@ -287,6 +287,7 @@ public class ServletPrincipal extends HttpServlet {
     //Funciones de actualizacion de registros (UPDATE)
     public void modificarCliente(HttpServletRequest request, HttpServletResponse response) {
         ///CAPTURA DE VARIABLES
+        String ID_Cliente = request.getParameter("idCliente");
         String DUI_Cliente = request.getParameter("dui");
         String nombresCliente = request.getParameter("nombresCliente");
         String apellidosCliente = request.getParameter("apellidosCliente");
@@ -304,15 +305,14 @@ public class ServletPrincipal extends HttpServlet {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             try (Connection conn = DriverManager.getConnection(url)) {
                 request.setAttribute("mensaje_conexion", "Ok!");
-                String sql = "UPDATE Clientes\n" +
-                        "SET" +
-                        "nombreCliente = '"+nombresCliente+"'," +
-                        "apellidoCliente = '"+apellidosCliente+"'," +
-                        "dui = '"+DUI_Cliente+"'," +
-                        "telefono = '"+telefonoCliente+"'," +
-                        "eMail = '"+correo+"'," +
-                        "idDireccion = '"+iddireccion+"'" +
-                        "WHERE IDCliente = ;";
+                String sql = "UPDATE Clientes "
+                        + "SET nombresCliente = '"+nombresCliente+"'," 
+                        + "apellidosCliente = '"+apellidosCliente+"'," 
+                        + "dui = '"+DUI_Cliente+"'," 
+                        + "telefono = '"+telefonoCliente+"'," 
+                        + "eMail = '"+correo+"'," 
+                        + "idDireccion = '"+iddireccion+"'" 
+                        + "WHERE IDCliente = '"+ID_Cliente+"'";
                 
                 PreparedStatement pstmt = conn.prepareStatement(sql);
                 int registros = pstmt.executeUpdate();
@@ -334,7 +334,7 @@ public class ServletPrincipal extends HttpServlet {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             try (Connection conn = DriverManager.getConnection(url)) {
                 request.setAttribute("mensaje_conexion", "Ok!");
-                String sql = "delete from Clientes where IDCliente='" + ID_Cliente + "'";
+                String sql = "delete from Clientes where IDCliente= '"+ID_Cliente+"'";
                 PreparedStatement pstmt = conn.prepareStatement(sql);
                 int registros = pstmt.executeUpdate();
                 if (registros > 0) {

@@ -9,37 +9,32 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Modificar Empleado</title>
+        <title>Modificar Cliente</title>
     </head>
     <body>
-        <h1>Modificar empleado</h1>
-        <form method="POST" action="/wesg7/ServletPrincipal?accion=ModificarEmpleado">
+        <h1>Modificar Cliente</h1>
+        
+        <form method="POST" action="/wesg7/ServletPrincipal?accion=ModificarCliente">
             <div>
-                <label>ID Empleado:</label>
-                <input type="text" name="ID_Empleado" id="ID_Empleado" value="${param.ID_Empleado}" readonly /><br>
+                <label>ID Cliente</label>
+                <input type="text" name="idCliente" id="idCliente" value="${param.ID_Cliente}" readonly /><br>
                 <label>DUI:</label>
-                <input type="text" name="DUI_Empleado" id="DUI_Empleado" value="${param.DUI_Empleado}" required /><br>
-                <label>Número de afiliado ISSS:</label>
-                <input type="text" name="ISSS_Empleado" id="ISSS_Empleado" value="${param.ISSS_Empleado}" required /><br>
+                <input type="text" name="dui" id="dui" value="${param.dui}" required /><br>
                 <label>Nombres:</label>
-                <input type="text" name="nombresEmpleado" id="nombresEmpleado" value="${param.nombresEmpleado}" required /><br>
+                <input type="text" name="nombresCliente" id="nombresCliente" value="${param.nombresCliente}" required /><br>
                 <label>Apellidos:</label>
-                <input type="text" name="apellidosEmpleado" id="apellidosEmpleado" value="${param.apellidosEmpleado}" required /><br>
-                <label>Fecha de nacimiento:</label>
-                <input type="date" name="fechaNacEmpleado" id="fechaNacEmpleado" value="${param.fechaNacEmpleado}" required /><br>
+                <input type="text" name="apellidosCliente" id="apellidosCliente" value="${param.apellidosCliente}" required /><br>
                 <label>Teléfono:</label>
-                <input type="text" name="telefonoEmpleado" id="telefonoEmpleado" value="${param.telefonoEmpleado}" required /><br>
+                <input type="tel" name="telefono" id="telefono" value="${param.telefono}" required /><br>
                 <label>Correo:</label>
-                <input type="email" name="correo" id="correo" value="${param.correo}" required /><br>
-                <label>ID Cargo:</label>
-                <input type="text" name="ID_Cargo" id="ID_Cargo" value="${param.ID_Cargo}" required /><br>
+                <input type="email" name="eMail" id="eMail" value="${param.eMail}" required /><br>
                 <label>ID Dirección:</label>
-                <input type="text" name="ID_Direccion" id="ID_Direccion" value="${param.ID_Direccion}" required /><br><br>           
-                <input type="submit" value="Modificar" onclick="return confirm('¿Desea modificar el empleado?')" /><br><br> 
-            </div>
+                <input type="text" name="idDireccion" id="idDireccion" value="${param.idDireccion}" required /><br><br>
+                <input type="submit" value="Registrar" onclick="return confirm('¿Desea modificar el cliente?')" /><br><br>
+            </div><br>
             <div>
-                <a href="/wesg7/?accion=GestionClientes">Regresar</a><br><br>
-            </div>             
+              <a href="/wesg7/?accion=GestionClientes">Volver al inicio</a>
+            </div>
         </form>
     </body>
 </html>

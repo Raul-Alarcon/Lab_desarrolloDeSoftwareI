@@ -45,7 +45,7 @@
               <input type="submit" value="Registrar" onclick="return confirm('¿Desea registrar el empleado?')" /><br><br>
             </div><br>
             <div>
-              <a href="/">Volver al inicio</a>
+              <a href="/wesg7/?accion=GestionEmpleados">Volver al inicio</a>
             </div>
         </form>
 

@@ -13,28 +13,23 @@
     </head>
     <body>
         <h1>Eliminar Cliente</h1>
-
+        
         <form method="POST" action="/wesg7/ServletPrincipal?accion=EliminarCliente">
             <div>
-                <label>ID Cliente: ${param.ID_Cliente}</label><br>
-                <label>DUI: ${param.dui}</label><br>
+              <label>ID Cliente: ${param.ID_Cliente}</label><br>
                 <label>Nombres: ${param.nombresCliente}</label><br>
                 <label>Apellidos: ${param.apellidosCliente}</label><br>
+                <label>DUI: ${param.dui}</label><br>
                 <label>Teléfono: ${param.telefono}</label><br>
                 <label>Correo: ${param.eMail}</label><br>
-                <label>ID DIreccion ${param.idDireccion}</label><br>
-                <label>Distrito: ${param.distrito}</label><br>
-                <label>Municipio: ${param.municipio}</label><br>  
-                <label>Departamento ${param.depto}</label><br>  
-                <label>Direccion ${param.direccion}</label><br>  
-                <label>Referencia ${param.referencia}</label><br>  
-                <label>Codigo Postal ${param.codPostal}</label><br>  
+                <label>ID Dirección: ${param.idDireccion}</label>   
                 <input type="hidden" name="ID_Cliente" id="ID_Cliente" value="${param.ID_Cliente}" /><br><br>
                 <input type="submit" value="Eliminar" onclick="return confirm('¿Desea eliminar el cliente?')" /><br><br>
-            </div>
+            </div><br>
             <div>
-                <a href="/wesg7/?accion=GestionClientes">Regresar</a><br><br>
-            </div>             
+              <a href="/wesg7/?accion=GestionClientes">Volver al inicio</a>
+            </div>
         </form>
     </body>
 </html>
+

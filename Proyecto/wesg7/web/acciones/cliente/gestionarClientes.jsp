@@ -59,7 +59,7 @@
                         <td><c:out value="${item.codPostal}" /></td>
                         <!-- opcion de modificar y eliminar -->
                         <td>
-                            <form method="POST" action = "/wesg7/acciones/empleado/ModificarCliente.jsp">
+                            <form method="POST" action = "/wesg7/acciones/cliente/ModificarCliente.jsp">
                                 <input type="hidden" name="ID_Cliente" value="${item.idCliente}" />
                                 <input type="hidden" name="dui" value="${item.dui}" />
                                 <input type="hidden" name="nombresCliente" value="${item.nombresCliente}" />
@@ -75,7 +75,7 @@
                                 <input type="hidden" name="codPostal" value="${item.codPostal}" />
                                 <input type="submit" value="Modificar" />
                             </form>    
-                            <form method="POST" action = "/wesg7/acciones/empleado/eliminarCliente.jsp">
+                            <form method="POST" action = "/wesg7/acciones/cliente/eliminarCliente.jsp">
                                 <input type="hidden" name="ID_Cliente" value="${item.idCliente}" />
                                 <input type="hidden" name="dui" value="${item.dui}" />
                                 <input type="hidden" name="nombresCliente" value="${item.nombresCliente}" />
