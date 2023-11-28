@@ -20,7 +20,9 @@ public class viewModelEmpleados {
     private String telefono;
     private String eMail;
     private int idCargo;
+    private String Cargo;
     private int idDireccion;
+    private String direccionFull;
 
     public int getIdEmpleado() {
         return idEmpleado;
@@ -94,11 +96,27 @@ public class viewModelEmpleados {
         this.idCargo = idCargo;
     }
 
+    public String getCargo() {
+        return Cargo;
+    }
+
+    public void setCargo(String Cargo) {
+        this.Cargo = Cargo;
+    }
+
     public int getIdDireccion() {
         return idDireccion;
     }
 
     public void setIdDireccion(int idDireccion) {
         this.idDireccion = idDireccion;
+    }
+
+    public String getDireccionFull() {
+        return direccionFull;
+    }
+
+    public void setDireccionFull(String direccionFull) {
+        this.direccionFull = direccionFull;
     }
 }
