@@ -215,7 +215,7 @@ public class ServletPrincipal extends HttpServlet {
             try(Connection conn = DriverManager.getConnection(url)){
             //try (Connection conn = DriverManager.getConnection(url);) {
                 request.setAttribute("mensaje_conexion", "Ok!");
-                String sqlQuery = "select * from vistaCliente";
+                String sqlQuery = "select * from VistaClientes";
                 PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
                 ResultSet rs = pstmt.executeQuery();
                 ArrayList<ViewModelClientes> listaClientes = new ArrayList<>();
@@ -228,12 +228,7 @@ public class ServletPrincipal extends HttpServlet {
                     cliente.setTelefono(rs.getString("telefono"));
                     cliente.seteMail(rs.getString("eMail"));
                     cliente.setIdDireccion(rs.getInt("idDireccion"));
-                    cliente.setDistrito(rs.getString("distrito"));
-                    cliente.setMunicipio(rs.getString("municipio"));
-                    cliente.setDepto(rs.getString("departamento"));
-                    cliente.setDireccion(rs.getString("Linea1"));
-                    cliente.setReferencia(rs.getString("Linea2"));
-                    cliente.setCodPostal(rs.getInt("CodigoPostal"));
+                    cliente.setDireccionFull(rs.getString("DireccionCompleta"));
                     listaClientes.add(cliente);
                 }               
                 request.setAttribute("listaClientes", listaClientes);
@@ -253,13 +248,6 @@ public class ServletPrincipal extends HttpServlet {
         String telefonoCliente = request.getParameter("telefono");
         String correo = request.getParameter("eMail");
         String iddireccion = request.getParameter("idDireccion");
-        /*String distrito = request.getParameter("distrito");
-        String municipio = request.getParameter("municipio");
-        String depto = request.getParameter("depto");
-        String direccion = request.getParameter("direccion");
-        String referencia = request.getParameter("referencia");
-        String codPostal = request.getParameter("codPostal");*/
-
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             try (Connection conn = DriverManager.getConnection(url)) {
@@ -296,13 +284,6 @@ public class ServletPrincipal extends HttpServlet {
         String telefonoCliente = request.getParameter("telefono");
         String correo = request.getParameter("eMail");
         String iddireccion = request.getParameter("idDireccion");
-        /*String distrito = request.getParameter("distrito");
-        String municipio = request.getParameter("municipio");
-        String depto = request.getParameter("depto");
-        String direccion = request.getParameter("direccion");
-        String referencia = request.getParameter("referencia");
-        String codPostal = request.getParameter("codPostal");*/
-
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             try (Connection conn = DriverManager.getConnection(url)) {
