@@ -9,11 +9,11 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Modificar Empleado</title>
+        <title>Modificar Proveedor</title>
     </head>
     <body>
-        <h1>Modificar empleado</h1>
-        <form method="POST" action="/wesg7/ServletPrincipal?accion=ModificarEmpleado">
+        <h1>Modificar proveedor</h1>
+        <form method="POST" action="/wesg7/ServletPrincipal?accion=ModificarProveedor">
             <div>
                 <label>ID Empleado:</label>
                 <input type="text" name="ID_Proveedor" id="ID_Proveedor" value="${param.ID_Proveedor}" readonly /><br>
@@ -22,7 +22,7 @@
                 <label>Apellidos:</label>
                 <input type="text" name="apellidosContacto" id="apellidosContacto" value="${param.apellidosContacto}" required /><br>
                 <label>Teléfono:</label>
-                <input type="text" name="telefonoContacto" id="telefonoContacto" value="${param.telefonoContacto}" required /><br>
+                <input type="text" name="telefono" id="telefono" value="${param.telefono}" required /><br>
                 <label>Correo:</label>
                 <input type="email" name="correo" id="correo" value="${param.correo}" required /><br>
                 <label>Compania:</label>

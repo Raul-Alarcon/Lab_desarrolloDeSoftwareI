@@ -28,7 +28,7 @@ import java.util.ArrayList;
 @WebServlet (name = "ServletPrincipal", urlPatterns = {"/ServletPrincipal"})
 public class ServletPrincipal extends HttpServlet {
     private final String user = "login_gg_diegogonzales";
-    private final String pass = "Gonzalesz1234";
+    private final String pass = "Gonzales1234";
     private final String servidor = "localhost:1433";
     private final String bd = "tiendaElectronica";
 
@@ -372,22 +372,22 @@ public class ServletPrincipal extends HttpServlet {
         String nombresContacto = request.getParameter("nombresContacto");
         String apellidosContacto = request.getParameter("apellidosContacto");
         String telefonoProveedor = request.getParameter("telefono");
-        String correo = request.getParameter("eMail");
+        String correo = request.getParameter("correo");
         String compania = request.getParameter("compania");
-        String ID_Direccion = request.getParameter("idDireccion");
+        String ID_Direccion = request.getParameter("ID_Direccion");
 
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             try (Connection conn = DriverManager.getConnection(url)) {
                 request.setAttribute("mensaje_conexion", "Ok!");
-                String sql = "insert into Proveedores values (?, ?, ?, ?, ?, ?, ?)";
+                String sql = "insert into Proveedores values (?, ?, ?, ?, ?, ?)";
                 PreparedStatement pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1, nombresContacto);
                 pstmt.setString(2, apellidosContacto);
                 pstmt.setString(3, telefonoProveedor);
                 pstmt.setString(4, correo);
-                pstmt.setString(6, compania);
-                pstmt.setString(7, ID_Direccion);
+                pstmt.setString(5, compania);
+                pstmt.setString(6, ID_Direccion);
                 int registros = pstmt.executeUpdate();
                 if (registros > 0) {
                     request.getSession().setAttribute("exito", true);
@@ -404,10 +404,10 @@ public class ServletPrincipal extends HttpServlet {
     //Funciones de actualizacion de registros (UPDATE)
     public void modificarProveedor(HttpServletRequest request, HttpServletResponse response) {
         //CAPTURA DE VARIABLES
-        String ID_Proveedor = request.getParameter("ID_Empleado");
+        String ID_Proveedor = request.getParameter("ID_Proveedor");
         String nombresContacto = request.getParameter("nombresContacto");
         String apellidosContacto = request.getParameter("apellidosContacto");
-        String telefonoContacto = request.getParameter("telefonoContacto");
+        String telefonoContacto = request.getParameter("telefono");
         String correo = request.getParameter("correo");
         String compania = request.getParameter("compania");
         String ID_Direccion = request.getParameter("ID_Direccion");
@@ -416,7 +416,7 @@ public class ServletPrincipal extends HttpServlet {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             try (Connection conn = DriverManager.getConnection(url)) {
                 request.setAttribute("mensaje_conexion", "Ok!");
-                String sql = "update Provedores set "
+                String sql = "update Proveedores set "
                  + "nombresContacto='"+nombresContacto+"', "
                  + "apellidosContacto='"+apellidosContacto+"', "
                  + "telefono='"+telefonoContacto+"', "
@@ -441,12 +441,12 @@ public class ServletPrincipal extends HttpServlet {
     
     //Funciones de eliminacion de registros (DELETE)
     public void eliminarProveedor(HttpServletRequest request, HttpServletResponse response) {
-        String ID_Proveedor = request.getParameter("ID_Provedor");
+        String ID_Proveedor = request.getParameter("ID_Proveedor");
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             try (Connection conn = DriverManager.getConnection(url)) {
                 request.setAttribute("mensaje_conexion", "Ok!");
-                String sql = "delete from Proveedpores where idProveedor ='" + ID_Proveedor + "'";
+                String sql = "delete from Proveedores where idProveedor ='" + ID_Proveedor + "'";
                 PreparedStatement pstmt = conn.prepareStatement(sql);
                 int registros = pstmt.executeUpdate();
                 if (registros > 0) {

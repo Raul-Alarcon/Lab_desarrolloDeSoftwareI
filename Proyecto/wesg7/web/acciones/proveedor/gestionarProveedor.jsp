@@ -98,6 +98,7 @@
                                 <input type="hidden" name="apellidosContacto" value="${item.apellidosContacto}" />
                                 <input type="hidden" name="telefono" value="${item.telefono}" />
                                 <input type="hidden" name="correo" value="${item.eMail}" />
+                                <input type="hidden" name="compania" value="${item.compania}" />
                                 <input type="hidden" name="ID_Direccion" value="${item.idDireccion}" />
                                 <input type="submit" value="Modificar" />
                             </form>    
@@ -107,6 +108,7 @@
                                 <input type="hidden" name="apellidosContacto" value="${item.apellidosContacto}" />
                                 <input type="hidden" name="telefono" value="${item.telefono}" />
                                 <input type="hidden" name="correo" value="${item.eMail}" />
+                                <input type="hidden" name="compania" value="${item.compania}" />
                                 <input type="hidden" name="ID_Direccion" value="${item.idDireccion}" />
                                 <input type="submit" value="Eliminar" />
                             </form>

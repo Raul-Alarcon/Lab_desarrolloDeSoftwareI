@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Agregar Empleado</title>
+        <title>Agregar Proveedor</title>
     </head>
     <body>
         <c:if test="${exito!=null}">
@@ -20,7 +20,7 @@
                 <p><strong style="color: red;">No se guardó la información</strong></p>
             </c:if>
         </c:if>   
-        <h1>Agregar nuevo empleado</h1>
+        <h1>Agregar nuevo proveedor</h1>
         
         <form method="POST" action="/wesg7/ServletPrincipal?accion=AgregarProveedor">
             <div>
@@ -31,15 +31,15 @@
               <label>Teléfono:</label>
               <input type="tel" name="telefono" id="telefono" required /><br>
               <label>Correo:</label>
-              <input type="email" name="eMail" id="eMail" required /><br>
+              <input type="email" name="correo" id="correo" required /><br>
               <label>Compania:</label>
               <input type="text" name="compania" id="compania" required /><br>
               <label>ID Dirección:</label>
-              <input type="text" name="idDireccion" id="idDireccion" required /><br><br>
+              <input type="text" name="ID_Direccion" id="ID_Direccion" required /><br><br>
               <input type="submit" value="Registrar" onclick="return confirm('¿Desea registrar el Proveedor?')" /><br><br>
             </div><br>
             <div>
-              <a href="/wesg7/?accion=GestionEmpleados">Volver al inicio</a>
+              <a href="/wesg7/?accion=GestionProveedor">Volver al inicio</a>
             </div>
         </form>
 
