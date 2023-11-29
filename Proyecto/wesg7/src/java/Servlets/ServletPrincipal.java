@@ -6,6 +6,7 @@ package Servlets;
 
 import Models.viewModelEmpleados;
 import Models.ViewModelClientes;
+import Models.viewModelProveedores;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -27,7 +28,7 @@ import java.util.ArrayList;
 @WebServlet (name = "ServletPrincipal", urlPatterns = {"/ServletPrincipal"})
 public class ServletPrincipal extends HttpServlet {
     private final String user = "login_gg_diegogonzales";
-    private final String pass = "Gonzales1234";
+    private final String pass = "Gonzalesz1234";
     private final String servidor = "localhost:1433";
     private final String bd = "tiendaElectronica";
 
@@ -331,6 +332,135 @@ public class ServletPrincipal extends HttpServlet {
             ex.printStackTrace();
         }
     }
+    
+    // proveedores
+    public void mostrarProveedores(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+
+            try(Connection conn = DriverManager.getConnection(url)){
+            //try (Connection conn = DriverManager.getConnection(url);) {
+                request.setAttribute("mensaje_conexion", "Ok!");
+                String sqlQuery = "select * from VistaProveedores";
+                PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+                ResultSet rs = pstmt.executeQuery();
+                ArrayList<viewModelProveedores> listaProveedores = new ArrayList<>();
+                while (rs.next()) {
+                    viewModelProveedores proveedor = new viewModelProveedores();
+                    proveedor.setIdProveedor(rs.getInt("idProveedor"));
+                    proveedor.setNombresContacto(rs.getString("nombresContacto"));
+                    proveedor.setApellidosContacto(rs.getString("apellidosContacto"));
+                    proveedor.setTelefono(rs.getString("telefono"));
+                    proveedor.seteMail(rs.getString("eMail"));
+                    proveedor.setCompania(rs.getString("compania"));
+                    proveedor.setIdDireccion(rs.getInt("idDireccion"));
+                    proveedor.setDireccionFull(rs.getString("DireccionCompleta"));
+                    listaProveedores.add(proveedor);
+                }               
+                request.setAttribute("listaProveedores", listaProveedores);
+
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            request.setAttribute("mensaje_conexion", ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+    
+    public void agregarProveedor(HttpServletRequest request, HttpServletResponse response) {
+       //CAPTURA DE VARIABLES
+        //El ID de los proveedores es autoincrementable
+        String nombresContacto = request.getParameter("nombresContacto");
+        String apellidosContacto = request.getParameter("apellidosContacto");
+        String telefonoProveedor = request.getParameter("telefono");
+        String correo = request.getParameter("eMail");
+        String compania = request.getParameter("compania");
+        String ID_Direccion = request.getParameter("idDireccion");
+
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            try (Connection conn = DriverManager.getConnection(url)) {
+                request.setAttribute("mensaje_conexion", "Ok!");
+                String sql = "insert into Proveedores values (?, ?, ?, ?, ?, ?, ?)";
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                pstmt.setString(1, nombresContacto);
+                pstmt.setString(2, apellidosContacto);
+                pstmt.setString(3, telefonoProveedor);
+                pstmt.setString(4, correo);
+                pstmt.setString(6, compania);
+                pstmt.setString(7, ID_Direccion);
+                int registros = pstmt.executeUpdate();
+                if (registros > 0) {
+                    request.getSession().setAttribute("exito", true);
+                } else {
+                    request.getSession().setAttribute("exito", false);
+                }
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            request.getSession().setAttribute("exito", false);
+            ex.printStackTrace();
+        }
+    }
+    
+    //Funciones de actualizacion de registros (UPDATE)
+    public void modificarProveedor(HttpServletRequest request, HttpServletResponse response) {
+        //CAPTURA DE VARIABLES
+        String ID_Proveedor = request.getParameter("ID_Empleado");
+        String nombresContacto = request.getParameter("nombresContacto");
+        String apellidosContacto = request.getParameter("apellidosContacto");
+        String telefonoContacto = request.getParameter("telefonoContacto");
+        String correo = request.getParameter("correo");
+        String compania = request.getParameter("compania");
+        String ID_Direccion = request.getParameter("ID_Direccion");
+
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            try (Connection conn = DriverManager.getConnection(url)) {
+                request.setAttribute("mensaje_conexion", "Ok!");
+                String sql = "update Provedores set "
+                 + "nombresContacto='"+nombresContacto+"', "
+                 + "apellidosContacto='"+apellidosContacto+"', "
+                 + "telefono='"+telefonoContacto+"', "
+                 + "eMail='"+correo+"', " 
+                 + "compania='"+compania+"', "
+                 + "idDireccion='"+ID_Direccion+"' " 
+                 + "where idProveedor='"+ID_Proveedor+"'";
+                
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                int registros = pstmt.executeUpdate();
+                if (registros > 0) {
+                    request.getSession().setAttribute("exito", true);
+                } else {
+                    request.getSession().setAttribute("exito", false);
+                }
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            request.getSession().setAttribute("exito", false);
+            ex.printStackTrace();
+        }
+    }
+    
+    //Funciones de eliminacion de registros (DELETE)
+    public void eliminarProveedor(HttpServletRequest request, HttpServletResponse response) {
+        String ID_Proveedor = request.getParameter("ID_Provedor");
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            try (Connection conn = DriverManager.getConnection(url)) {
+                request.setAttribute("mensaje_conexion", "Ok!");
+                String sql = "delete from Proveedpores where idProveedor ='" + ID_Proveedor + "'";
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                int registros = pstmt.executeUpdate();
+                if (registros > 0) {
+                    request.getSession().setAttribute("exito", true);
+                } else {
+                    request.getSession().setAttribute("exito", false);
+                }
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            request.getSession().setAttribute("exito", false);
+            ex.printStackTrace();
+        }
+    }
+    
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -374,6 +504,17 @@ public class ServletPrincipal extends HttpServlet {
                 request.getSession().removeAttribute("exito");
             }
             request.getRequestDispatcher("/acciones/cliente/agregarCliente.jsp").forward(request, response);
+        }
+        else if (accion.equals("GestionProveedor")) {
+            mostrarProveedores(request, response);
+            request.getRequestDispatcher("/acciones/proveedor/gestionarProveedor.jsp").forward(request, response);
+        }
+        else if (accion.equals("AgregarProveedor")) {
+            if (request.getSession().getAttribute("exito") != null) {
+                request.setAttribute("exito", request.getSession().getAttribute("exito"));
+                request.getSession().removeAttribute("exito");
+            }
+            request.getRequestDispatcher("/acciones/proveedor/agregarProveedor.jsp").forward(request, response);
         }
     }
 
@@ -434,6 +575,17 @@ public class ServletPrincipal extends HttpServlet {
         } else if (accion.equals("EliminarCliente")) {
             eliminarCliente(request, response);
             response.sendRedirect(request.getContextPath() + "/ServletPrincipal?accion=GestionClientes");
+        }else if (accion.equals("AgregarProveedor")) {
+            //LOS DATOS SE LE PASAN POR PARAMETRO A LA FUNCION
+            agregarProveedor(request, response);
+            //REDIRIGE NUEVAMENTE A LA VISTA DE AGREGAR EMPLEADO
+            response.sendRedirect(request.getContextPath() + "/ServletPrincipal?accion=AgregarProveedor");
+        } else if (accion.equals("ModificarProveedor")) {
+            modificarProveedor(request, response);
+            response.sendRedirect(request.getContextPath() + "/ServletPrincipal?accion=GestionProveedor");
+        } else if (accion.equals("EliminarProveedor")) {
+            eliminarProveedor(request, response);
+            response.sendRedirect(request.getContextPath() + "/ServletPrincipal?accion=GestionProveedor");
         }
     }
 

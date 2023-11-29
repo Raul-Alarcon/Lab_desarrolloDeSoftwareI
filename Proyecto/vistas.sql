@@ -57,3 +57,21 @@ select
 	CAST(DIR.CodigoPostal AS char(5)) as DireccionCompleta
 from Clientes as cli
 	inner join VistaDireccionCompleta DIR on cli.idDireccion = DIR.idDireccion;
+
+
+
+create view VistaProveedores as
+select
+    pr.idProveedor, 
+	pr.nombresContacto, 
+	pr.ApellidosContacto,
+	pr.telefono, 
+	pr.eMail,
+	pr.compania,
+	pr.idDireccion,
+	DIR.Linea1 + ', ' + DIR.Linea2 + ', ' +
+    DIR.Distrito + ', ' + DIR.Municipio + ', ' +
+    DIR.Departamento + ', ' + DIR.Pais + ', ' +
+	CAST(DIR.CodigoPostal AS char(5)) as DireccionCompleta
+from Proveedores as pr
+	inner join VistaDireccionCompleta DIR on pr.idDireccion = DIR.idDireccion;
