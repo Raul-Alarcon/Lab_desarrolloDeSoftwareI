@@ -27,7 +27,7 @@
                 <input type="submit" value="Eliminar" onclick="return confirm('¿Desea eliminar el proveedor?')" /><br><br>
             </div>
             <div>
-                <a href="/wesg7/?accion=GestionProveedores">Regresar</a><br><br>
+                <a href="/wesg7/?accion=GestionProveedor">Regresar</a><br><br>
             </div>             
         </form>
     </body>

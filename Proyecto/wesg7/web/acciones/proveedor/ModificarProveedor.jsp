@@ -17,7 +17,7 @@
             <div>
                 <label>ID Empleado:</label>
                 <input type="text" name="ID_Proveedor" id="ID_Proveedor" value="${param.ID_Proveedor}" readonly /><br>
-                <label>DUI:</label>
+                <label>Nombres:</label>
                 <input type="text" name="nombresContacto" id="nombresContacto" value="${param.nombresContacto}" required /><br>
                 <label>Apellidos:</label>
                 <input type="text" name="apellidosContacto" id="apellidosContacto" value="${param.apellidosContacto}" required /><br>
@@ -32,7 +32,7 @@
                 <input type="submit" value="Modificar" onclick="return confirm('¿Desea modificar el Proveedor?')" /><br><br> 
             </div>
             <div>
-                <a href="/wesg7/?accion=GestionProveedores">Regresar</a><br><br>
+                <a href="/wesg7/?accion=GestionProveedor">Regresar</a><br><br>
             </div>             
         </form>
     </body>

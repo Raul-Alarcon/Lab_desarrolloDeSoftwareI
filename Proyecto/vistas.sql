@@ -5,6 +5,7 @@ select
     DIR.idDireccion,
     DIR.Linea1,
     DIR.Linea2,
+	DIS.idDistrito,
     DIS.distrito,
     MUN.municipio,
     DEP.departamento,

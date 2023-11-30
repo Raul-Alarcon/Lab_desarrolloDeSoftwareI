@@ -28,7 +28,7 @@ import java.util.ArrayList;
 @WebServlet (name = "ServletPrincipal", urlPatterns = {"/ServletPrincipal"})
 public class ServletPrincipal extends HttpServlet {
     private final String user = "login_gg_diegogonzales";
-    private final String pass = "Gonzales1234";
+    private final String pass = "Gonzalesz1234";
     private final String servidor = "localhost:1433";
     private final String bd = "tiendaElectronica";
 
