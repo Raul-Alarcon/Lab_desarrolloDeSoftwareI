@@ -568,7 +568,7 @@ public class ServletPrincipal extends HttpServlet {
     
     //Funciones de eliminacion de registros (DELETE)
     public void eliminarProducto(HttpServletRequest request, HttpServletResponse response) {
-        String ID_Producto = request.getParameter("ID_Producto");
+        String ID_Producto = request.getParameter("idProducto");
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             try (Connection conn = DriverManager.getConnection(url)) {

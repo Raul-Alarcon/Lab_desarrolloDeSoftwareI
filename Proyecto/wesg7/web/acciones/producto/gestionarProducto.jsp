@@ -85,13 +85,15 @@
                                 <input type="hidden" name="idStok" value="${item.idStok}" />
                                 <input type="submit" value="Modificar" />
                             </form>    
-                            <form method="POST" action = "/wesg7/acciones/productos/eliminarProducto.jsp">
+                            <form method="POST" action = "/wesg7/acciones/producto/eliminarProducto.jsp">
                                 <input type="hidden" name="idProducto" value="${item.idProducto}" />
                                 <input type="hidden" name="nombreP" value="${item.nombreP}" />
                                 <input type="hidden" name="descripcionProducto" value="${item.descripcionProducto}" />
                                 <input type="hidden" name="precio" value="${item.precio}" />
                                 <input type="hidden" name="idCategoria" value="${item.idCategoria}" />
+                                <input type="hidden" name="categoria" value="${item.categoria}" />
                                 <input type="hidden" name="idStok" value="${item.idStok}" />
+                                <input type="hidden" name="stok" value="${item.cantidadStok}" />
                                 <input type="submit" value="Eliminar" />
                             </form>
                         </td>

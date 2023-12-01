@@ -9,25 +9,26 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Eliminar empleado</title>
+        <title>Eliminar Producto</title>
     </head>
     <body>
-        <h1>Eliminar empleado</h1>
+        <h1>Eliminar producto</h1>
 
-        <form method="POST" action="/wesg7/ServletPrincipal?accion=EliminarProveedor">
+        <form method="POST" action="/wesg7/ServletPrincipal?accion=EliminarProducto">
             <div>
-                <label>ID Proveedor: ${param.ID_Proveedor}</label><br>
-                <label>Nombres: ${param.nombresContacto}</label><br>
-                <label>Apellidos: ${param.apellidosContacto}</label><br>
-                <label>Teléfono: ${param.telefono}</label><br>
-                <label>Correo: ${param.correo}</label><br>
-                <label>Compania: ${param.compania}</label><br>
-                <label>ID Dirección: ${param.ID_Direccion}</label>   
-                <input type="hidden" name="ID_Proveedor" id="ID_Proveedor" value="${param.ID_Proveedor}" /><br><br>
+                <label>ID Producto: ${param.idProducto}</label><br>
+                <label>Nombre Producto: ${param.nombreP}</label><br>
+                <label>Descripción Producto: ${param.descripcionProducto}</label><br>
+                <label>Precio: ${param.precio}</label><br>
+                <label>ID Categoría: ${param.idCategoria}</label><br>
+                <label>Categoría: ${param.categoria}</label><br>
+                <label>ID Stock: ${param.idStok}</label><br>
+                <label>Stock: ${param.stok}</label><br>
+                <input type="hidden" name="idProducto" id="idProducto" value="${param.idProducto}" /><br><br>
                 <input type="submit" value="Eliminar" onclick="return confirm('¿Desea eliminar el proveedor?')" /><br><br>
             </div>
             <div>
-                <a href="/wesg7/?accion=GestionProveedor">Regresar</a><br><br>
+                <a href="/wesg7/?accion=GestionProductor">Regresar</a><br><br>
             </div>             
         </form>
     </body>
