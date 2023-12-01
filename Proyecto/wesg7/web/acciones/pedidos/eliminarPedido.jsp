@@ -9,25 +9,24 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Eliminar empleado</title>
+        <title>Eliminar Pedido</title>
     </head>
     <body>
-        <h1>Eliminar empleado</h1>
+        <h1>Eliminar pedido</h1>
 
-        <form method="POST" action="/wesg7/ServletPrincipal?accion=EliminarProveedor">
+        <form method="POST" action="/wesg7/ServletPrincipal?accion=EliminarPedido">
             <div>
-                <label>ID Proveedor: ${param.ID_Proveedor}</label><br>
-                <label>Nombres: ${param.nombresContacto}</label><br>
-                <label>Apellidos: ${param.apellidosContacto}</label><br>
-                <label>Teléfono: ${param.telefono}</label><br>
-                <label>Correo: ${param.correo}</label><br>
-                <label>Compania: ${param.compania}</label><br>
-                <label>ID Dirección: ${param.ID_Direccion}</label>   
-                <input type="hidden" name="ID_Proveedor" id="ID_Proveedor" value="${param.ID_Proveedor}" /><br><br>
+                <label>ID Pedido: ${param.idPedido}</label><br>
+                <label>Fecha Pedido: ${param.fechaPedido}</label><br>
+                <label>Fecha Recibido: ${param.fechaRecibido}</label><br>
+                <label>Comentario: ${param.comentario}</label><br>
+                <label>ID Proveedor: ${param.idProveedor}</label><br>
+                <label>Proveedor: ${param.Proveedor}</label><br>
+                <input type="hidden" name="idPedido" id="idPedido" value="${param.idPedido}" /><br><br>
                 <input type="submit" value="Eliminar" onclick="return confirm('¿Desea eliminar el proveedor?')" /><br><br>
             </div>
             <div>
-                <a href="/wesg7/?accion=GestionProveedor">Regresar</a><br><br>
+                <a href="/wesg7/?accion=GestionPedido">Regresar</a><br><br>
             </div>             
         </form>
     </body>

@@ -9,30 +9,30 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Modificar Proveedor</title>
+        <title>Modificar Compra</title>
     </head>
     <body>
-        <h1>Modificar proveedor</h1>
-        <form method="POST" action="/wesg7/ServletPrincipal?accion=ModificarProveedor">
+        <h1>Modificar compra</h1>
+        <form method="POST" action="/wesg7/ServletPrincipal?accion=ModificarCompra">
             <div>
-                <label>ID Empleado:</label>
-                <input type="text" name="ID_Proveedor" id="ID_Proveedor" value="${param.ID_Proveedor}" readonly /><br>
-                <label>Nombres:</label>
-                <input type="text" name="nombresContacto" id="nombresContacto" value="${param.nombresContacto}" required /><br>
-                <label>Apellidos:</label>
-                <input type="text" name="apellidosContacto" id="apellidosContacto" value="${param.apellidosContacto}" required /><br>
-                <label>Teléfono:</label>
-                <input type="text" name="telefono" id="telefono" value="${param.telefono}" required /><br>
-                <label>Correo:</label>
-                <input type="email" name="correo" id="correo" value="${param.correo}" required /><br>
-                <label>Compania:</label>
-                <input type="text" name="compania" id="compania" value="${param.compania}" required /><br>
-                <label>ID Dirección:</label>
-                <input type="text" name="ID_Direccion" id="ID_Direccion" value="${param.ID_Direccion}" required /><br><br>           
-                <input type="submit" value="Modificar" onclick="return confirm('¿Desea modificar el Proveedor?')" /><br><br> 
+                <label>ID Compra:</label>
+                <input type="text" name="idCompra" value="${param.idCompra}" readonly /><br>
+                <label>ID Pedido:</label>
+                <input type="text" name="idPedido" value="${param.idPedido}" required /><br>
+                <label>ID Producto:</label>
+                <input type="text" name="idProducto" value="${param.idProducto}" required /><br>
+                <label>Cantidad:</label>
+                <input type="text" name="cantidad" value="${param.cantidad}" required /><br>
+                <label>Precio Unitario:</label>
+                <input type="text" name="precioUnidad" value="${param.precioUnidad}" required /><br>
+                <label>Descuento Unitario:</label>
+                <input type="text" name="descuentoUnidad" value="${param.descuentoUnidad}" required /><br>
+                <label>Comentarios:</label>
+                <input type="text" name="comentarios" value="${param.comentarios}" required /><br>
+                <input type="submit" value="Modificar" onclick="return confirm('¿Desea modificar la Compra?')" /><br><br> 
             </div>
             <div>
-                <a href="/wesg7/?accion=GestionProveedor">Regresar</a><br><br>
+                <a href="/wesg7/?accion=GestionCompra">Regresar</a><br><br>
             </div>             
         </form>
     </body>

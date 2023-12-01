@@ -9,7 +9,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Agregar Proveedor</title>
+        <title>Agregar Pedido</title>
     </head>
     <body>
         <c:if test="${exito!=null}">
@@ -20,26 +20,22 @@
                 <p><strong style="color: red;">No se guardó la información</strong></p>
             </c:if>
         </c:if>   
-        <h1>Agregar nuevo proveedor</h1>
+        <h1>Agregar nuevo pedido</h1>
         
-        <form method="POST" action="/wesg7/ServletPrincipal?accion=AgregarProveedor">
+        <form method="POST" action="/wesg7/ServletPrincipal?accion=AgregarPedido">
             <div>
-              <label>Nombres:</label>
-              <input type="text" name="nombresContacto" id="nombresContacto" required /><br>
-              <label>Apellidos:</label>
-              <input type="text" name="apellidosContacto" id="apellidosContacto" required /><br>
-              <label>Teléfono:</label>
-              <input type="tel" name="telefono" id="telefono" required /><br>
-              <label>Correo:</label>
-              <input type="email" name="correo" id="correo" required /><br>
-              <label>Compania:</label>
-              <input type="text" name="compania" id="compania" required /><br>
-              <label>ID Dirección:</label>
-              <input type="text" name="ID_Direccion" id="ID_Direccion" required /><br><br>
-              <input type="submit" value="Registrar" onclick="return confirm('¿Desea registrar el Proveedor?')" /><br><br>
+                <label>Fecha Pedido:</label>
+                <input type="date" name="fechaPedido" readonly/><br>
+                <label>Fecha Recibido:</label>
+                <input type="date" name="fechaRecibido" required/><br>
+                <label>Comentario:</label>
+                <input type="text" name="comentario" required /><br>
+                <label>ID Proveedor:</label>
+                <input type="text" name="idProveedor" required /><br>
+              <input type="submit" value="Registrar" onclick="return confirm('¿Desea registrar el Pedido?')" /><br><br>
             </div><br>
             <div>
-              <a href="/wesg7/?accion=GestionProveedor">Volver al inicio</a>
+              <a href="/wesg7/?accion=GestionPedido">Volver al inicio</a>
             </div>
         </form>
 

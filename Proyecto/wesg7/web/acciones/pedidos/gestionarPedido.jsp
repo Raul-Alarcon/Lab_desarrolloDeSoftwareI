@@ -11,33 +11,7 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Gestionar Empleados</title>
-        <style>
-            /* Estilo para el contenedor del pop-up */
-            .popup-container {
-                display: none;
-                position: fixed;
-                top: 50%;
-                left: 50%;
-                transform: translate(-50%, -50%);
-                padding: 20px;
-                background-color: #f0f0f0;
-                border: 1px solid #ccc;
-                z-index: 1;
-            }
-
-            /* Estilo para el fondo oscuro */
-            .overlay {
-                display: none;
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
-                background-color: rgba(0, 0, 0, 0.5);
-                z-index: 0;
-            }
-        </style>
+        <title>Gestionar Pedidos</title>
     </head>
     <body>
         <h1>Gestión de Pedidos</h1>
@@ -46,7 +20,7 @@
         <h2>Conexion: ${mensaje_conexion}</h2>
         
         <!-- AÑADIR OPCION DE NUEVO REGISTRO -->
-        <a href="/wesg7?accion=AgregarProveedor">Agregar pedidos</a><br><br>
+        <a href="/wesg7?accion=AgregarPedido">Agregar pedidos</a><br><br>
 
         <table border="1">
             <thead>
@@ -71,23 +45,26 @@
                         <td><c:out value="${item.proveedor}" /></td>
                         <!-- opcion de modificar y eliminar -->
                         <td>
-                            <button>
-                                Detalles
-                            </button>
-                            <form method="POST" action = "/wesg7/acciones/proveedor/ModificarProveedor.jsp">
-                                <input type="hidden" name="ID_Pedido" value="${item.idPedido}" />
+                            <%--
+                            prueba fallida xd
+                            <form method="POST" action="/wesg7?accion=GestionCompra">
+                                <input type="hidden" name="idPedido" value="${item.idPedido}" />
+                                <button type="submit">Detalles</button>
+                            </form>--%>
+                            <form method="POST" action = "/wesg7/acciones/pedidos/ModificarPedido.jsp">
+                                <input type="hidden" name="idPedido" value="${item.idPedido}" />
                                 <input type="hidden"  name="fechaPedido" value="${item.fechaPedido}" />
                                 <input type="hidden" name="fechaRecibido" value="${item.fechaRecibido}" />
                                 <input type="hidden" name="comentario" value="${item.comentario}" />
-                                <input type="hidden" name="ID_Proveedor" value="${item.idProveedor}" />
+                                <input type="hidden" name="idProveedor" value="${item.idProveedor}" />
                                 <input type="submit" value="Modificar" />
                             </form>    
-                            <form method="POST" action = "/wesg7/acciones/proveedor/eliminarProveedor.jsp">
-                                <input type="hidden" name="ID_Pedido" value="${item.idPedido}" />
-                                <input type="hidden" name="fechaPedido" value="${item.fechaPedido}" />
+                            <form method="POST" action = "/wesg7/acciones/pedidos/eliminarPedido.jsp">
+                                <input type="hidden" name="idPedido" value="${item.idPedido}" />
+                                <input type="hidden"  name="fechaPedido" value="${item.fechaPedido}" />
                                 <input type="hidden" name="fechaRecibido" value="${item.fechaRecibido}" />
                                 <input type="hidden" name="comentario" value="${item.comentario}" />
-                                <input type="hidden" name="ID_Proveedor" value="${item.idProveedor}" />
+                                <input type="hidden" name="idProveedor" value="${item.idProveedor}" />
                                 <input type="hidden" name="Proveedor" value="${item.proveedor}" />
                                 <input type="submit" value="Eliminar" />
                             </form>

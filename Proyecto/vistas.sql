@@ -104,7 +104,6 @@ select
 	pr.idProveedor,
 	pr.nombresContacto+' '+pr.ApellidosContacto as Proveedor
 from Pedidos as p
-INNER JOIN Compras as c on p.idPedido = c.idpedido
 INNER JOIN Proveedores as pr on p.idProveedor = pr.idProveedor;
 
 

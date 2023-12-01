@@ -9,25 +9,26 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Eliminar empleado</title>
+        <title>Eliminar Compra</title>
     </head>
     <body>
-        <h1>Eliminar empleado</h1>
+        <h1>Eliminar compra</h1>
 
-        <form method="POST" action="/wesg7/ServletPrincipal?accion=EliminarProveedor">
+        <form method="POST" action="/wesg7/ServletPrincipal?accion=EliminarCompra">
             <div>
-                <label>ID Proveedor: ${param.ID_Proveedor}</label><br>
-                <label>Nombres: ${param.nombresContacto}</label><br>
-                <label>Apellidos: ${param.apellidosContacto}</label><br>
-                <label>Teléfono: ${param.telefono}</label><br>
-                <label>Correo: ${param.correo}</label><br>
-                <label>Compania: ${param.compania}</label><br>
-                <label>ID Dirección: ${param.ID_Direccion}</label>   
-                <input type="hidden" name="ID_Proveedor" id="ID_Proveedor" value="${param.ID_Proveedor}" /><br><br>
-                <input type="submit" value="Eliminar" onclick="return confirm('¿Desea eliminar el proveedor?')" /><br><br>
+                <label>ID Compra: ${param.idCompra}</label><br>
+                <label>ID Pedido: ${param.idPedido}</label><br>
+                <label>ID Producto: ${param.idProducto}</label><br>
+                <label>Nombre Producto: ${param.nombreP}</label><br>
+                <label>Cantidad: ${param.cantidad}</label><br>
+                <label>Precio Unidad: ${param.precioUnidad}</label><br>
+                <label>Descuento Unidad: ${param.descuentoUnidad}</label><br>
+                <label>Comentarios: ${param.comentarios}</label><br>   
+                <input type="hidden" name="idCompra" id="idCompra" value="${param.idCompra}" /><br><br>
+                <input type="submit" value="Eliminar" onclick="return confirm('¿Desea eliminar la Compra?')" /><br><br>
             </div>
             <div>
-                <a href="/wesg7/?accion=GestionProveedor">Regresar</a><br><br>
+                <a href="/wesg7/?accion=GestionCompra">Regresar</a><br><br>
             </div>             
         </form>
     </body>

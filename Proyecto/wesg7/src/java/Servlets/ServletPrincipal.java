@@ -625,7 +625,6 @@ public class ServletPrincipal extends HttpServlet {
     public void agregarPedido(HttpServletRequest request, HttpServletResponse response) {
        //CAPTURA DE VARIABLES
         String idProveedor = request.getParameter("idProveedor");
-        String fechaPedido = request.getParameter("fechaPedido");
         String fechaRecibido = request.getParameter("fechaRecibido");
         String comentario = request.getParameter("comentario");
 
@@ -633,12 +632,11 @@ public class ServletPrincipal extends HttpServlet {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             try (Connection conn = DriverManager.getConnection(url)) {
                 request.setAttribute("mensaje_conexion", "Ok!");
-                String sql = "insert into Pedidos values (?, ?, ?, ?)";
+                String sql = "insert into Pedidos values (?, GETDATE(), ?, ?)";
                 PreparedStatement pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1, idProveedor);
-                pstmt.setString(2, fechaPedido);
-                pstmt.setString(3, fechaRecibido);
-                pstmt.setString(4, comentario);
+                pstmt.setString(2, fechaRecibido);
+                pstmt.setString(3, comentario);
                 int registros = pstmt.executeUpdate();
                 if (registros > 0) {
                     request.getSession().setAttribute("exito", true);
@@ -664,12 +662,12 @@ public class ServletPrincipal extends HttpServlet {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             try (Connection conn = DriverManager.getConnection(url)) {
                 request.setAttribute("mensaje_conexion", "Ok!");
-                String sql = "update Productos set "
+                String sql = "update Pedidos set "
                  + "idProveedor='"+idProveedor+"', "
                  + "fechaPedido='"+fechaPedido+"', "
                  + "fechaRecibido='"+fechaRecibido+"', "
                  + "comentario='"+comentario+"'"
-                 + "where idProducto='"+ID_Pedidoo+"'";
+                 + "where idPedido='"+ID_Pedidoo+"'";
                 
                 PreparedStatement pstmt = conn.prepareStatement(sql);
                 int registros = pstmt.executeUpdate();
@@ -709,6 +707,7 @@ public class ServletPrincipal extends HttpServlet {
     
     //compras
     public void mostrarCompras(HttpServletRequest request, HttpServletResponse response) {
+        //String idpedido = request.getParameter("idPedido");
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 
@@ -743,18 +742,18 @@ public class ServletPrincipal extends HttpServlet {
     
     public void agregarCompra(HttpServletRequest request, HttpServletResponse response) {
        //CAPTURA DE VARIABLES
-        String idproducto = request.getParameter("idProveedor");
-        String idpedido = request.getParameter("fechaPedido");
-        String cantidad = request.getParameter("fechaRecibido");
-        String precioUnidad = request.getParameter("comentario");
-        String descuentoUnidad = request.getParameter("comentario");
-        String comentario = request.getParameter("comentario");
+        String idproducto = request.getParameter("idProducto");
+        String idpedido = request.getParameter("idPedido");
+        String cantidad = request.getParameter("cantidad");
+        String precioUnidad = request.getParameter("precioUnidad");
+        String descuentoUnidad = request.getParameter("descuentoUnidad");
+        String comentario = request.getParameter("comentarios");
 
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             try (Connection conn = DriverManager.getConnection(url)) {
                 request.setAttribute("mensaje_conexion", "Ok!");
-                String sql = "insert into Compras values (?, ?, ?, ?, ?, ?, ?)";
+                String sql = "insert into Compras values (?, ?, ?, ?, ?, ?)";
                 PreparedStatement pstmt = conn.prepareStatement(sql);
                 pstmt.setString(1, idproducto);
                 pstmt.setString(2, idpedido);
@@ -779,23 +778,23 @@ public class ServletPrincipal extends HttpServlet {
     public void modificarCompra(HttpServletRequest request, HttpServletResponse response) {
         //CAPTURA DE VARIABLES
         String ID_Compra = request.getParameter("idCompra");
-        String idproducto = request.getParameter("idProveedor");
-        String idpedido = request.getParameter("fechaPedido");
-        String cantidad = request.getParameter("fechaRecibido");
-        String precioUnidad = request.getParameter("comentario");
-        String descuentoUnidad = request.getParameter("comentario");
-        String comentario = request.getParameter("comentario");
+        String idproducto = request.getParameter("idProducto");
+        String idpedido = request.getParameter("idPedido");
+        String cantidad = request.getParameter("cantidad");
+        String precioUnidad = request.getParameter("precioUnidad");
+        String descuentoUnidad = request.getParameter("descuentoUnidad");
+        String comentario = request.getParameter("comentarios");
         try {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             try (Connection conn = DriverManager.getConnection(url)) {
                 request.setAttribute("mensaje_conexion", "Ok!");
-                String sql = "update Productos set "
+                String sql = "update Compras set "
                  + "idproducto='"+idproducto+"', "
                  + "idpedido='"+idpedido+"', "
                  + "cantidad='"+cantidad+"', "
-                 + "precioUnidad='"+precioUnidad+"'"
-                 + "descuentoUnidad='"+descuentoUnidad+"' ,"
-                 + "comentario='"+comentario+"'"
+                 + "precioUnidad='"+precioUnidad+"', "
+                 + "descuetoUnidad='"+descuentoUnidad+"' ,"
+                 + "comentarios='"+comentario+"' "
                  + "where IDCompra='"+ID_Compra+"'";
                 
                 PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -819,7 +818,7 @@ public class ServletPrincipal extends HttpServlet {
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             try (Connection conn = DriverManager.getConnection(url)) {
                 request.setAttribute("mensaje_conexion", "Ok!");
-                String sql = "delete from Compras where idCompra ='" + ID_Compra + "'";
+                String sql = "delete from Compras where IDCompra ='" + ID_Compra + "'";
                 PreparedStatement pstmt = conn.prepareStatement(sql);
                 int registros = pstmt.executeUpdate();
                 if (registros > 0) {

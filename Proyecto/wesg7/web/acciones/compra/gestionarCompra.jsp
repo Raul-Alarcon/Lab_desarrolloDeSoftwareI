@@ -46,8 +46,13 @@
         <h2>Conexion: ${mensaje_conexion}</h2>
         
         <!-- AÑADIR OPCION DE NUEVO REGISTRO -->
-        <a href="/wesg7?accion=AgregarProveedor">Agregar compras</a><br><br>
-
+        <a href="/wesg7?accion=AgregarCompra">Agregar compras</a><br><br>
+        <%--
+        fallido xd
+        <form method="POST" action="/wesg7?accion=GestionCompra">
+            <label>ID Pedido: ${param.idPedido}</label><br>
+        </form>
+        --%>
         <table border="1">
             <thead>
                 <tr>
@@ -73,27 +78,25 @@
                         <td><c:out value="${item.comentarios}" /></td>
                         <!-- opcion de modificar y eliminar -->
                         <td>
-                            <button>
-                                Detalles
-                            </button>
                             <form method="POST" action = "/wesg7/acciones/compra/ModificarCompra.jsp">
-                                <input type="hidden" name="ID_Compra" value="${item.IDCompra}" />
-                                <input type="hidden" name="ID_Pedido" value="${item.idpedido}" />
-                                <input type="hidden" name="Nombre_Producto" value="${item.nombreP}" />
-                                <input type="hidden" name="Cantidad" value="${item.cantidad}" />
-                                <input type="hidden" name="Precio_Unidad" value="${item.precioUnidad}" />
-                                <input type="hidden" name="Descuento_Unidad" value="${item.descuentoUnidad}" />
-                                <input type="hidden" name="Comentarios" value="${item.comentarios}" />
+                                <input type="hidden" name="idCompra" value="${item.IDCompra}" />
+                                <input type="hidden" name="idPedido" value="${item.idpedido}" />
+                                <input type="hidden" name="idProducto" value="${item.idProducto}" />
+                                <input type="hidden" name="cantidad" value="${item.cantidad}" />
+                                <input type="hidden" name="precioUnidad" value="${item.precioUnidad}" />
+                                <input type="hidden" name="descuentoUnidad" value="${item.descuentoUnidad}" />
+                                <input type="hidden" name="comentarios" value="${item.comentarios}" />
                                 <input type="submit" value="Modificar" />
                             </form>    
-                            <form method="POST" action = "/wesg7/acciones/compra/eliminarComprar.jsp">
-                                <input type="hidden" name="ID_Compra" value="${item.IDCompra}" />
-                                <input type="hidden" name="ID_Pedido" value="${item.idpedido}" />
-                                <input type="hidden" name="Nombre_Producto" value="${item.nombreP}" />
-                                <input type="hidden" name="Cantidad" value="${item.cantidad}" />
-                                <input type="hidden" name="Precio_Unidad" value="${item.precioUnidad}" />
-                                <input type="hidden" name="Descuento_Unidad" value="${item.descuentoUnidad}" />
-                                <input type="hidden" name="Comentarios" value="${item.comentarios}" />
+                            <form method="POST" action = "/wesg7/acciones/compra/eliminarCompra.jsp">
+                                <input type="hidden" name="idCompra" value="${item.IDCompra}" />
+                                <input type="hidden" name="idPedido" value="${item.idpedido}" />
+                                <input type="hidden" name="idProducto" value="${item.idProducto}" />
+                                <input type="hidden" name="nombreP" value="${item.nombreP}" />
+                                <input type="hidden" name="cantidad" value="${item.cantidad}" />
+                                <input type="hidden" name="precioUnidad" value="${item.precioUnidad}" />
+                                <input type="hidden" name="descuentoUnidad" value="${item.descuentoUnidad}" />
+                                <input type="hidden" name="comentarios" value="${item.comentarios}" />
                                 <input type="submit" value="Eliminar" />
                             </form>
                         </td>
