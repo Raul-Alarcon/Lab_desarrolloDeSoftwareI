@@ -21,6 +21,8 @@
                 <li><a href="/wesg7?accion=GestionClientes">Gestionar Clientes</a></li>
                 <li><a href="/wesg7?accion=GestionProveedor">Gestionar Proveedores</a></li>
                 <li><a href="/wesg7?accion=GestionProducto">Gestionar Productos</a></li>
+                <li><a href="/wesg7?accion=GestionPedido">Gestionar Pedidos</a></li>
+                <li><a href="/wesg7?accion=GestionCompra">Gestionar Compras</a></li>
             </ul>
         </nav>
     </body>

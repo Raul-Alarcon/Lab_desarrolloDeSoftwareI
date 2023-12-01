@@ -93,3 +93,30 @@ SELECT
 FROM Productos AS p
 INNER JOIN CategoriasProductos AS ca ON p.idCategoria = ca.idCategoria
 INNER JOIN DetallesStok AS st ON p.idStok = st.idStok;
+
+
+create view VistaPedidos as
+select 
+	p.idPedido, 
+	p.fechaPedido,
+	p.fechaRecibido, 
+	p.comentario,
+	pr.idProveedor,
+	pr.nombresContacto+' '+pr.ApellidosContacto as Proveedor
+from Pedidos as p
+INNER JOIN Compras as c on p.idPedido = c.idpedido
+INNER JOIN Proveedores as pr on p.idProveedor = pr.idProveedor;
+
+
+create view VistaCompras as 
+select 
+	c.IDCompra,
+	c.idpedido,
+	p.idProducto,
+	p.nombreP,
+	c.cantidad,
+	c.precioUnidad,
+	c.descuetoUnidad,
+	c.comentarios
+from Compras as c
+INNER JOIN Productos AS	p on c.idproducto = p.idProducto;
