@@ -6,6 +6,7 @@ package Servlets;
 
 import Models.viewModelEmpleados;
 import Models.ViewModelClientes;
+import Models.viewModelProductos;
 import Models.viewModelProveedores;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -28,7 +29,7 @@ import java.util.ArrayList;
 @WebServlet (name = "ServletPrincipal", urlPatterns = {"/ServletPrincipal"})
 public class ServletPrincipal extends HttpServlet {
     private final String user = "login_gg_diegogonzales";
-    private final String pass = "Gonzalesz1234";
+    private final String pass = "Gonzales1234";
     private final String servidor = "localhost:1433";
     private final String bd = "tiendaElectronica";
 
@@ -461,6 +462,131 @@ public class ServletPrincipal extends HttpServlet {
         }
     }
     
+    //Productos
+    public void mostrarProductos(HttpServletRequest request, HttpServletResponse response) {
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+
+            try(Connection conn = DriverManager.getConnection(url)){
+            //try (Connection conn = DriverManager.getConnection(url);) {
+                request.setAttribute("mensaje_conexion", "Ok!");
+                String sqlQuery = "select * from VistaProductos";
+                PreparedStatement pstmt = conn.prepareStatement(sqlQuery);
+                ResultSet rs = pstmt.executeQuery();
+                ArrayList<viewModelProductos> listaProductos = new ArrayList<>();
+                while (rs.next()) {
+                    viewModelProductos producto = new viewModelProductos();
+                    producto.setIdProducto(rs.getInt("idProducto"));
+                    producto.setNombreP(rs.getString("nombreP"));
+                    producto.setDescripcionProducto(rs.getString("descripcionProducto"));
+                    producto.setPrecio(rs.getDouble("precio"));
+                    producto.setIdCategoria(rs.getInt("idCategoria"));
+                    producto.setCategoria(rs.getString("categoria"));
+                    producto.setDetalles(rs.getString("detalles"));
+                    producto.setIdStok(rs.getInt("idStok"));
+                    producto.setCantidadStok(rs.getInt("cantidadStok"));
+                    producto.setDescripcionStok(rs.getString("descripcionStok"));
+                    listaProductos.add(producto);
+
+                }               
+                request.setAttribute("listaProductos", listaProductos);
+
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            request.setAttribute("mensaje_conexion", ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+    
+    public void agregarProducto(HttpServletRequest request, HttpServletResponse response) {
+       //CAPTURA DE VARIABLES
+        String nombreP = request.getParameter("nombreP");
+        String descripcionProducto = request.getParameter("descripcionProducto");
+        String precio = request.getParameter("precio");
+        String idCategoria = request.getParameter("idCategoria");
+        String idStok = request.getParameter("idStok");
+
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            try (Connection conn = DriverManager.getConnection(url)) {
+                request.setAttribute("mensaje_conexion", "Ok!");
+                String sql = "insert into Productos values (?, ?, ?, ?, ?)";
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                pstmt.setString(1, nombreP);
+                pstmt.setString(2, descripcionProducto);
+                pstmt.setString(3, precio);
+                pstmt.setString(4, idCategoria);
+                pstmt.setString(5, idStok);
+                int registros = pstmt.executeUpdate();
+                if (registros > 0) {
+                    request.getSession().setAttribute("exito", true);
+                } else {
+                    request.getSession().setAttribute("exito", false);
+                }
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            request.getSession().setAttribute("exito", false);
+            ex.printStackTrace();
+        }
+    }
+    
+    //Funciones de actualizacion de registros (UPDATE)
+    public void modificarProducto(HttpServletRequest request, HttpServletResponse response) {
+        //CAPTURA DE VARIABLES
+        String ID_Producto = request.getParameter("idProducto");
+        String nombreP = request.getParameter("nombreP");
+        String descripcionProducto = request.getParameter("descripcionProducto");
+        String precio = request.getParameter("precio");
+        String idCategoria = request.getParameter("idCategoria");
+        String idStok = request.getParameter("idStok");
+
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            try (Connection conn = DriverManager.getConnection(url)) {
+                request.setAttribute("mensaje_conexion", "Ok!");
+                String sql = "update Productos set "
+                 + "nombreP='"+nombreP+"', "
+                 + "descripcion='"+descripcionProducto+"', "
+                 + "precio='"+precio+"', "
+                 + "idCategoria='"+idCategoria+"', " 
+                 + "idStok='"+idStok+"'"
+                 + "where idProducto='"+ID_Producto+"'";
+                
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                int registros = pstmt.executeUpdate();
+                if (registros > 0) {
+                    request.getSession().setAttribute("exito", true);
+                } else {
+                    request.getSession().setAttribute("exito", false);
+                }
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            request.getSession().setAttribute("exito", false);
+            ex.printStackTrace();
+        }
+    }
+    
+    //Funciones de eliminacion de registros (DELETE)
+    public void eliminarProducto(HttpServletRequest request, HttpServletResponse response) {
+        String ID_Producto = request.getParameter("ID_Producto");
+        try {
+            Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+            try (Connection conn = DriverManager.getConnection(url)) {
+                request.setAttribute("mensaje_conexion", "Ok!");
+                String sql = "delete from Productos where idProducto ='" + ID_Producto + "'";
+                PreparedStatement pstmt = conn.prepareStatement(sql);
+                int registros = pstmt.executeUpdate();
+                if (registros > 0) {
+                    request.getSession().setAttribute("exito", true);
+                } else {
+                    request.getSession().setAttribute("exito", false);
+                }
+            }
+        } catch (SQLException | ClassNotFoundException ex) {
+            request.getSession().setAttribute("exito", false);
+            ex.printStackTrace();
+        }
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -515,6 +641,17 @@ public class ServletPrincipal extends HttpServlet {
                 request.getSession().removeAttribute("exito");
             }
             request.getRequestDispatcher("/acciones/proveedor/agregarProveedor.jsp").forward(request, response);
+        }
+        else if (accion.equals("GestionProducto")) {
+            mostrarProductos(request, response);
+            request.getRequestDispatcher("/acciones/producto/gestionarProducto.jsp").forward(request, response);
+        }
+        else if (accion.equals("AgregarProducto")) {
+            if (request.getSession().getAttribute("exito") != null) {
+                request.setAttribute("exito", request.getSession().getAttribute("exito"));
+                request.getSession().removeAttribute("exito");
+            }
+            request.getRequestDispatcher("/acciones/producto/agregarProducto.jsp").forward(request, response);
         }
     }
 
@@ -575,7 +712,7 @@ public class ServletPrincipal extends HttpServlet {
         } else if (accion.equals("EliminarCliente")) {
             eliminarCliente(request, response);
             response.sendRedirect(request.getContextPath() + "/ServletPrincipal?accion=GestionClientes");
-        }else if (accion.equals("AgregarProveedor")) {
+        } else if (accion.equals("AgregarProveedor")) {
             //LOS DATOS SE LE PASAN POR PARAMETRO A LA FUNCION
             agregarProveedor(request, response);
             //REDIRIGE NUEVAMENTE A LA VISTA DE AGREGAR EMPLEADO
@@ -586,6 +723,17 @@ public class ServletPrincipal extends HttpServlet {
         } else if (accion.equals("EliminarProveedor")) {
             eliminarProveedor(request, response);
             response.sendRedirect(request.getContextPath() + "/ServletPrincipal?accion=GestionProveedor");
+        } else if (accion.equals("AgregarProducto")) {
+            //LOS DATOS SE LE PASAN POR PARAMETRO A LA FUNCION
+            agregarProducto(request, response);
+            //REDIRIGE NUEVAMENTE A LA VISTA DE AGREGAR EMPLEADO
+            response.sendRedirect(request.getContextPath() + "/ServletPrincipal?accion=AgregarProducto");
+        } else if (accion.equals("ModificarProducto")) {
+            modificarProducto(request, response);
+            response.sendRedirect(request.getContextPath() + "/ServletPrincipal?accion=GestionProducto");
+        } else if (accion.equals("EliminarProducto")) {
+            eliminarProducto(request, response);
+            response.sendRedirect(request.getContextPath() + "/ServletPrincipal?accion=GestionProducto");
         }
     }
 

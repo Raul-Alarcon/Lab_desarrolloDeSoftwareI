@@ -76,3 +76,20 @@ select
 	CAST(DIR.CodigoPostal AS char(5)) as DireccionCompleta
 from Proveedores as pr
 	inner join VistaDireccionCompleta DIR on pr.idDireccion = DIR.idDireccion;
+
+
+CREATE VIEW VistaProductos AS
+SELECT 
+	p.idProducto,
+	p.nombreP,
+	p.descripcion AS descripcionProducto,
+	p.precio,
+	ca.idCategoria,
+	ca.categoria,
+	ca.detalles,
+	st.idStok,
+	st.cantidadStok,
+	st.descripcion AS descripcionStok
+FROM Productos AS p
+INNER JOIN CategoriasProductos AS ca ON p.idCategoria = ca.idCategoria
+INNER JOIN DetallesStok AS st ON p.idStok = st.idStok;

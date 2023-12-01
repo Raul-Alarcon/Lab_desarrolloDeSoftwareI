@@ -20,6 +20,7 @@
                 <li><a href="/wesg7?accion=GestionEmpleados">Gestionar Empleados</a></li>
                 <li><a href="/wesg7?accion=GestionClientes">Gestionar Clientes</a></li>
                 <li><a href="/wesg7?accion=GestionProveedor">Gestionar Proveedores</a></li>
+                <li><a href="/wesg7?accion=GestionProducto">Gestionar Productos</a></li>
             </ul>
         </nav>
     </body>
