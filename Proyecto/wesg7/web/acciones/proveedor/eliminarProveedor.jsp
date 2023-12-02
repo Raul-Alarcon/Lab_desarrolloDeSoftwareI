@@ -12,19 +12,19 @@
         <title>Eliminar Proveedor</title>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
     </head>
-    <body>
-        <h1>Eliminar proveedor</h1>
+    <body class="container bg-light mt-5">
+        <h1 class="mb-4">Eliminar proveedor</h1>
 
         <form method="POST" action="/wesg7/ServletPrincipal?accion=EliminarProveedor">
-            <div>
-                <label>ID Proveedor: ${param.ID_Proveedor}</label><br>
-                <label>Nombres: ${param.nombresContacto}</label><br>
-                <label>Apellidos: ${param.apellidosContacto}</label><br>
-                <label>Teléfono: ${param.telefono}</label><br>
-                <label>Correo: ${param.correo}</label><br>
-                <label>Compania: ${param.compania}</label><br>
-                <label>ID Dirección: ${param.ID_Direccion}</label>   
-                <input type="hidden" name="ID_Proveedor" id="ID_Proveedor" value="${param.ID_Proveedor}" /><br><br>
+            <div class="mb-1">
+                <label class="form-label">ID Proveedor: ${param.ID_Proveedor}</label><br>
+                <label class="form-label">Nombres: ${param.nombresContacto}</label><br>
+                <label class="form-label">Apellidos: ${param.apellidosContacto}</label><br>
+                <label class="form-label">Teléfono: ${param.telefono}</label><br>
+                <label class="form-label">Correo: ${param.correo}</label><br>
+                <label class="form-label">Compania: ${param.compania}</label><br>
+                <label class="form-label">ID Dirección: ${param.ID_Direccion}</label>   
+                <input class="form-control" type="hidden" name="ID_Proveedor" id="ID_Proveedor" value="${param.ID_Proveedor}" /><br><br>
                 <input type="submit" value="Eliminar" onclick="return confirm('¿Desea eliminar el proveedor?')" /><br><br>
             </div>
             <div>
